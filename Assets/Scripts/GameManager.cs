@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private int timeRemain = 60;
     public bool isGameActive = true;
     public TextMeshProUGUI bestScoreText;
+    private Counter counter;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
         timeOutText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        counter = GameObject.Find("Box").GetComponent<Counter>();
         StartCoroutine(SpawnDroplet());
         UpdateTimer();
         UpdateBestScore();
@@ -93,9 +95,10 @@ public class GameManager : MonoBehaviour
     // Stop game, bring up game over text and restart button
     public void GameOver()
     {
+        isGameActive = false;
         timeOutText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
-        isGameActive = false;
+        UpdateBestScore();
     }
 
     // Restart game by reloading the scene
@@ -106,6 +109,11 @@ public class GameManager : MonoBehaviour
 
     public void UpdateBestScore()
     {
+        int score = counter.GetScore();
+        if (score > DataManager.Instance.userData.Score)
+        {
+            DataManager.Instance.userData.Score = score;
+        }
         if (DataManager.Instance.userData.Name.Length > 0)
         {
             bestScoreText.text = "Best Score: " + DataManager.Instance.userData.Name + ": " + DataManager.Instance.userData.Score;

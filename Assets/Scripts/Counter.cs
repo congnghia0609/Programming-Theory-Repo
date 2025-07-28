@@ -57,8 +57,10 @@ public class Counter : MonoBehaviour
             // Kiểm tra tâm (center) của quả bóng có nằm bên trong bounds của thùng hay không.
             if (IsPointInsideBox(boxCollider, ballPos))
             {
+                // POLYMORPHISM
+                BallBase bb = ball.GetComponent<BallBase>();
+                sum += bb.GetScore();
                 // ballsInside.Add(ball);
-                sum++;
                 // Đảm bảo bóng nằm trong thùng.
                 // ball.transform.SetParent(transform);
                 // // Để bóng không bay xuyên qua thùng khi di chuyển qua trái qua phải.
@@ -101,5 +103,11 @@ public class Counter : MonoBehaviour
             CountBall();
             UpdateCounter();
         }
+    }
+
+    // ENCAPSULATION
+    public int GetScore()
+    {
+        return Score;
     }
 }
