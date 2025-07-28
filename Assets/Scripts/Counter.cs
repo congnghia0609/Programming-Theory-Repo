@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Counter : MonoBehaviour
 {
     public Text CounterText;
-    private int Count = 0;
+    private int Score = 0;
     private Collider boxCollider; // Collider của thùng
     // private List<GameObject> ballsInside = new List<GameObject>();
     private Rigidbody boxRb;
@@ -16,7 +16,7 @@ public class Counter : MonoBehaviour
 
     private void Start()
     {
-        Count = 0;
+        Score = 0;
         boxCollider = GetComponent<Collider>();
         boxRb = GetComponent<Rigidbody>();
         // Điều này nghĩa là thùng có collider để va chạm, nhưng không chịu tác động của vật lý.
@@ -48,7 +48,7 @@ public class Counter : MonoBehaviour
     void CountBall()
     {
         // ballsInside.Clear();
-        int counter = 0;
+        int sum = 0;
         // Tất cả các quả bóng có tag "Ball"
         GameObject[] balls = GameObject.FindGameObjectsWithTag(tagBall);
         foreach (GameObject ball in balls)
@@ -58,7 +58,7 @@ public class Counter : MonoBehaviour
             if (IsPointInsideBox(boxCollider, ballPos))
             {
                 // ballsInside.Add(ball);
-                counter++;
+                sum++;
                 // Đảm bảo bóng nằm trong thùng.
                 // ball.transform.SetParent(transform);
                 // // Để bóng không bay xuyên qua thùng khi di chuyển qua trái qua phải.
@@ -67,7 +67,7 @@ public class Counter : MonoBehaviour
                 // ballRb.interpolation = RigidbodyInterpolation.Interpolate;
             }
         }
-        Count = counter;
+        Score = sum;
     }
 
     // Kiểm tra tâm (center) của quả bóng có nằm bên trong bounds của thùng hay không.
@@ -90,7 +90,7 @@ public class Counter : MonoBehaviour
     void UpdateCounter()
     {
         // Count = ballsInside.Count;
-        CounterText.text = "Count : " + Count;
+        CounterText.text = "Score: " + Score;
     }
 
     void OnTriggerExit(Collider other)

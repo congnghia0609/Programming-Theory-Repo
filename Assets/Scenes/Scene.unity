@@ -748,7 +748,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Count : 0'
+  m_Text: 'Score: 0'
 --- !u!222 &598753587
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -803,7 +803,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: 0.5
-  droplet: {fileID: 4405450640769771822, guid: d1031d6833121e741b5fe7a3fb56b036, type: 3}
+  droplets:
+  - {fileID: 4405450640769771822, guid: d1031d6833121e741b5fe7a3fb56b036, type: 3}
+  - {fileID: 4405450640769771822, guid: 1a95e51050acb080da4adc3d90c84059, type: 3}
+  - {fileID: 4405450640769771822, guid: e05a3bd2c7fb2eb42b26a7eec18120ac, type: 3}
   timerText: {fileID: 1751029512}
   timeOutText: {fileID: 21450865}
   restartButton: {fileID: 419345350}
@@ -1689,9 +1692,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1899638125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -635, y: 5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -235, y: 5}
   m_SizeDelta: {x: 480, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1663682178
