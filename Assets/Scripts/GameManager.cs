@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     private int timeRemain = 60;
     public bool isGameActive = true;
+    public TextMeshProUGUI bestScoreText;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
         restartButton.gameObject.SetActive(false);
         StartCoroutine(SpawnDroplet());
         UpdateTimer();
+        UpdateBestScore();
         StartCoroutine(CountdownTimer());
     }
 
@@ -80,7 +82,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
+
     public void UpdateTimer()
     {
         timerText.text = "Time: " + timeRemain;
@@ -98,5 +100,17 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void UpdateBestScore()
+    {
+        if (DataManager.Instance.userData.Name.Length > 0)
+        {
+            bestScoreText.text = "Best Score: " + DataManager.Instance.userData.Name + ": " + DataManager.Instance.userData.Score;
+        }
+        else
+        {
+            bestScoreText.text = "Best Score";
+        }
     }
 }

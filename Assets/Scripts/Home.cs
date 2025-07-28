@@ -28,7 +28,12 @@ public class Home : MonoBehaviour
 
     public void PlayGame()
     {
-        // SceneManager.LoadScene(SceneManager.GetSceneAt(1).name);
-        SceneManager.LoadScene("scene");
+        string name = username.text.Trim();
+        if (name.Length > 0)
+        {
+            DataManager.Instance.userData.Name = name;
+            // SceneManager.LoadScene(SceneManager.GetSceneAt(1).name);
+            SceneManager.LoadScene("scene");
+        }
     }
 }
